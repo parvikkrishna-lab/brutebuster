@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BruteBuster - Password Generator & Cracking Simulator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>BruteBuster</h1>
+        <p>Generate bulletproof keys. Challenge the cracking engine.</p>
+    </header>
+
+    <div class="container">
+        <section class="card">
+            <h2>The Key Generator</h2>
+            <div class="output-box">
+                <span id="generated-password">Click Generate Below</span>
+                <button class="btn-small" onclick="copyPassword()">Copy</button>
+            </div>
+
+            <div class="control-group">
+                <label>Length: <span id="length-val">12 characters</span></label>
+                <input type="range" id="pass-length" min="6" max="30" value="12" class="slider">
+            </div>
+
+            <div class="control-group">
+                <label>Generation Strategy:</label>
+                <div class="radio-option">
+                    <input type="radio" id="type-random" name="gen-type" value="random" checked>
+                    <label for="type-random">Random Characters</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="type-phrase" name="gen-type" value="phrase">
+                    <label for="type-phrase">Readable Passphrase (Diceware)</label>
+                </div>
+            </div>
+
+            <div class="checkbox-group" id="character-options">
+                <label><input type="checkbox" id="inc-upper" checked> Uppercase</label>
+                <label><input type="checkbox" id="inc-lower" checked> Lowercase</label>
+                <label><input type="checkbox" id="inc-numbers" checked> Numbers</label>
+                <label><input type="checkbox" id="inc-symbols" checked> Symbols</label>
+            </div>
+
+            <button class="btn-primary" onclick="generatePassword()">Generate Key</button>
+        </section>
+
+        <section class="card">
+            <h2>The Brute-Force Simulator</h2>
+            <p class="description">
+                Type a password below to test it against our simulated dictionary and automated brute-force hacker bot.
+            </p>
+            <input type="password" id="game-input" class="input-game" placeholder="Type a password to test...">
+            
+            <div id="strength-output"></div>
+
+            <div class="game-terminal" id="terminal">
+                [SYSTEM]: Awaiting target input...
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="safety-note">🔒 Privacy assurance: All processing happens 100% locally inside your browser. No data is ever sent over the network.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
